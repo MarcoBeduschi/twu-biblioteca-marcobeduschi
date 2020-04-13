@@ -10,4 +10,8 @@ public class Book {
         this.author = author;
         this.yearPublished = yearPublished;
     }
+
+    public String formatBook()  {
+        return String.format("%s, %s, %d.", title, author, yearPublished);
+    }
 }
