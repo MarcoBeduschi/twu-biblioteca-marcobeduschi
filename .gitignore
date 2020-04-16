@@ -1,6 +1,7 @@
-// Idea personal settings
+/ Idea personal settings
 *.idea/dictionaries
 *.idea/workspace.xml
+*.idea/codeStyles/
 
-// Compiled Code from Intellij
+/ Compiled Code from Intellij
 *out/
