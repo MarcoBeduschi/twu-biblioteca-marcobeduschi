@@ -1,1 +1,6 @@
+// Idea personal settings
 *.idea/dictionaries
+*.idea/workspace.xml
+
+// Compiled Code from Intellij
+*out/
