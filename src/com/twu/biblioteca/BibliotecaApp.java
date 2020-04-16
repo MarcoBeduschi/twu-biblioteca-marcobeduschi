@@ -22,6 +22,7 @@ public class BibliotecaApp {
 	}
 
 	private static void listBooks() {
+		System.out.println("Available Books:");
 		List<Book> books = BookRepository.getAllBooks();
 
 		IntStream.range(0, books.size()).forEach(index -> {

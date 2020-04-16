@@ -27,6 +27,7 @@ public class BibliotecaAppTest {
 
 		BibliotecaApp.run();
 
+		verify(printStreamMock).println("Available Books:");
 		verify(printStreamMock).println("Book 1: " + BookRepository.BOOKS.get(0).info());
 		verify(printStreamMock).println("Book 2: " + BookRepository.BOOKS.get(1).info());
 		verify(printStreamMock).println("Book 3: " + BookRepository.BOOKS.get(2).info());
