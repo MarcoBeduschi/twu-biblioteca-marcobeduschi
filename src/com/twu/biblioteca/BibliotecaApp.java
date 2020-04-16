@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.models.Book;
 import com.twu.biblioteca.repositories.BookRepository;
 
 import java.util.List;
@@ -21,13 +22,13 @@ public class BibliotecaApp {
 	}
 
 	private static void listBooks() {
-		List<String> books = BookRepository.getAllBooks();
+		List<Book> books = BookRepository.getAllBooks();
 
 		IntStream.range(0, books.size()).forEach(index -> {
 			int bookNum = index + 1;
-			String currBook = books.get(index);
+			Book currBook = books.get(index);
 
-			System.out.println("Book " + bookNum + ": " + currBook);
+			System.out.println("Book " + bookNum + ": " + currBook.info());
 		});
 	}
 }

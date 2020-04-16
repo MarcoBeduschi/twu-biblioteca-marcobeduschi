@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.repositories.BookRepository;
 import org.junit.Test;
 
 import java.io.PrintStream;
@@ -26,8 +27,8 @@ public class BibliotecaAppTest {
 
 		BibliotecaApp.run();
 
-		verify(printStreamMock).println("Book 1: Harry Potter");
-		verify(printStreamMock).println("Book 2: Percy Jackson");
-		verify(printStreamMock).println("Book 3: The Myth of Sisyphus");
+		verify(printStreamMock).println("Book 1: " + BookRepository.BOOKS.get(0).info());
+		verify(printStreamMock).println("Book 2: " + BookRepository.BOOKS.get(1).info());
+		verify(printStreamMock).println("Book 3: " + BookRepository.BOOKS.get(2).info());
 	}
 }
