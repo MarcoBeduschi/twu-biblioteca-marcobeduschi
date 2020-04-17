@@ -1,17 +1,25 @@
 package com.twu.biblioteca.models;
 
-public class Biblioteca {
-	private final MainMenu menu;
+import com.twu.biblioteca.services.BookService;
 
-	public Biblioteca(MainMenu menu) {
-		this.menu = menu;
+import java.util.List;
+
+public class Biblioteca {
+	private final List<Book> books;
+
+	public Biblioteca(List<Book> books) {
+		this.books = books;
 	}
 
 	public String getWelcomeMessage() {
 		return "Welcome to the Biblioteca!";
 	}
 
-	public MainMenu getMainMenu() {
-		return menu;
+	public List<Book> getBooks() {
+		return books;
+	}
+
+	public List<String> listBooks() {
+		return BookService.listBooks(getBooks());
 	}
 }
