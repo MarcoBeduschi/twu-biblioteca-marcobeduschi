@@ -33,18 +33,4 @@ public class MainMenuTest {
 
 		assertThat(actualOptions, is(equalTo(expectedOptions)));
 	}
-
-	@Test
-	public void shouldDisplayBookListIfOptionIsSelected() {
-		PrintStream printStreamMock = mock(PrintStream.class);
-		System.setOut(printStreamMock);
-		MainMenu menu = new MainMenu();
-
-		menu.getOption(MainMenu.Options.LIST_BOOKS);
-
-		verify(printStreamMock).println("Available Books:");
-		verify(printStreamMock).println("Book 1: " + BookRepository.BOOKS.get(0).info());
-		verify(printStreamMock).println("Book 2: " + BookRepository.BOOKS.get(1).info());
-		verify(printStreamMock).println("Book 3: " + BookRepository.BOOKS.get(2).info());
-	}
 }
