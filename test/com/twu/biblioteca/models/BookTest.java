@@ -46,11 +46,4 @@ public class BookTest {
 
 		assertThat(actualInfo, is(equalTo("The Lord Of The Rings, J. R. R. Tolkien, 1954")));
 	}
-
-	@Test
-	public void shouldReturnAllBooksInStorage() {
-		List<Book> books = Book.getAllBooks();
-
-		assertThat(books, is(equalTo(BookRepository.BOOKS)));
-	}
 }
