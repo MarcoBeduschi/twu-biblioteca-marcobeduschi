@@ -1,35 +1,39 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.models.Book;
-import com.twu.biblioteca.repositories.BookRepository;
+import com.twu.biblioteca.models.Biblioteca;
+import com.twu.biblioteca.models.MainMenu;
 
 import java.util.List;
-import java.util.stream.IntStream;
+import java.util.Scanner;
+
 
 public class BibliotecaApp {
 
 	public static void main(String[] args) {
-		run();
+		MainMenu menu = new MainMenu();
+		Biblioteca biblioteca = new Biblioteca(menu);
+
+		run(biblioteca);
 	}
 
-	public static void run() {
-		welcomeUser();
-		listBooks();
+	public static void run(Biblioteca biblioteca) {
+		displayMessage(biblioteca.getWelcomeMessage());
+		biblioteca.getMainMenu().getOptions().forEach(BibliotecaApp::displayMessage);
+		String userInput = getUserInput();
+//		menu.displayOptions();
+//		BookService.listBooks();
 	}
 
-	private static void welcomeUser() {
-		System.out.println("Welcome to the Biblioteca!");
+	public static String getUserInput() {
+		Scanner scanner = new Scanner(System.in);
+		return scanner.nextLine();
 	}
 
-	private static void listBooks() {
-		System.out.println("Available Books:");
-		List<Book> books = BookRepository.getAllBooks();
+	private static String welcomeUser() {
+		return "Welcome to the Biblioteca!";
+	}
 
-		IntStream.range(0, books.size()).forEach(index -> {
-			int bookNum = index + 1;
-			Book currBook = books.get(index);
-
-			System.out.println("Book " + bookNum + ": " + currBook.info());
-		});
+	public static void displayMessage(String message) {
+		System.out.println(message);
 	}
 }

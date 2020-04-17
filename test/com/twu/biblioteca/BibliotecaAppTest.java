@@ -1,35 +1,39 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.repositories.BookRepository;
 import org.junit.Test;
 
+import java.io.ByteArrayInputStream;
 import java.io.PrintStream;
+import java.util.Arrays;
+import java.util.List;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 public class BibliotecaAppTest {
 
 	@Test
-	public void shouldPrintAWelcomeMessage() {
+	public void shouldDisplayMessages() {
 		PrintStream printStreamMock = mock(PrintStream.class);
 		System.setOut(printStreamMock);
+		String expectedMessage = "This message should be printed!";
 
-		BibliotecaApp.run();
+		BibliotecaApp.displayMessage(expectedMessage);
 
-		verify(printStreamMock).println("Welcome to the Biblioteca!");
+		verify(printStreamMock).println(expectedMessage);
 	}
 
 	@Test
-	public void shouldListAllBooks() {
-		PrintStream printStreamMock = mock(PrintStream.class);
-		System.setOut(printStreamMock);
+	public void shouldGetUserInput() {
+		String mockInput = "Any String will do!";
+		ByteArrayInputStream in = new ByteArrayInputStream(mockInput.getBytes());
+		System.setIn(in);
 
-		BibliotecaApp.run();
+		String actualInput = BibliotecaApp.getUserInput();
 
-		verify(printStreamMock).println("Available Books:");
-		verify(printStreamMock).println("Book 1: " + BookRepository.BOOKS.get(0).info());
-		verify(printStreamMock).println("Book 2: " + BookRepository.BOOKS.get(1).info());
-		verify(printStreamMock).println("Book 3: " + BookRepository.BOOKS.get(2).info());
+		assertThat(actualInput,is(equalTo(mockInput)));
 	}
 }
