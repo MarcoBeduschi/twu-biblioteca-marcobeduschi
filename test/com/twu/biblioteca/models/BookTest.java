@@ -1,6 +1,9 @@
 package com.twu.biblioteca.models;
 
+import com.twu.biblioteca.repositories.BookRepository;
 import org.junit.Test;
+
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
@@ -42,5 +45,12 @@ public class BookTest {
 		String actualInfo = book.info();
 
 		assertThat(actualInfo, is(equalTo("The Lord Of The Rings, J. R. R. Tolkien, 1954")));
+	}
+
+	@Test
+	public void shouldReturnAllBooksInStorage() {
+		List<Book> books = Book.getAllBooks();
+
+		assertThat(books, is(equalTo(BookRepository.BOOKS)));
 	}
 }
