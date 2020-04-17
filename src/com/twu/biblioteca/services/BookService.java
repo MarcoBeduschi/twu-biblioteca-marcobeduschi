@@ -6,15 +6,16 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class BookService {
-	public static void listBooks() {
-		System.out.println("Available Books:");
-		List<Book> books = Book.getAllBooks();
+	public static List<String> listBooks(List<Book> books) {
+		List<String> bookList = new java.util.ArrayList<>();
 
 		IntStream.range(0, books.size()).forEach(index -> {
 			int bookNum = index + 1;
 			Book currBook = books.get(index);
 
-			System.out.println("Book " + bookNum + ": " + currBook.info());
+			bookList.add("Book " + bookNum + ": " + currBook.info());
 		});
+
+		return bookList;
 	}
 }
