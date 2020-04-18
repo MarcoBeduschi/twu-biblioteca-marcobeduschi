@@ -14,17 +14,6 @@ import static org.mockito.Mockito.verify;
 public class BibliotecaAppTest {
 
 	@Test
-	public void shouldDisplayMessages() {
-		PrintStream printStreamMock = mock(PrintStream.class);
-		System.setOut(printStreamMock);
-		String expectedMessage = "This message should be printed!";
-
-		BibliotecaApp.displayMessage(expectedMessage);
-
-		verify(printStreamMock).println(expectedMessage);
-	}
-
-	@Test
 	public void shouldGetUserInput() {
 		String mockInput = "Any String will do!";
 		ByteArrayInputStream in = new ByteArrayInputStream(mockInput.getBytes());
