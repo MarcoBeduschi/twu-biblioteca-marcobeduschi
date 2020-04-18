@@ -8,11 +8,11 @@ import java.util.List;
 
 
 public class BibliotecaFactory {
-	public static Biblioteca create() {
+	public Biblioteca create() {
 		return new Biblioteca(createBooks());
 	}
 
-	private static List<Book> createBooks() {
+	private List<Book> createBooks() {
 		return Arrays.asList(
 				new Book("The Myth of Sisyphus", "Albert Camus", 1952),
 				new Book("Sofie's World", "Joseph Gaardner", 2000),
