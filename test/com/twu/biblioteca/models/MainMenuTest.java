@@ -17,13 +17,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 public class MainMenuTest {
-	@Before
-	public void setUp() {
-		String input = "1";
-		InputStream in = new ByteArrayInputStream(input.getBytes());
-		System.setIn(in);
-	}
-
 	@Test
 	public void shouldReturnAListOfOptionsToBeDisplayed() {
 		MainMenu menu = new MainMenu();
@@ -32,5 +25,29 @@ public class MainMenuTest {
 		List<String> actualOptions = menu.getOptions();
 
 		assertThat(actualOptions, is(equalTo(expectedOptions)));
+	}
+
+	@Test
+	public void shouldDisplayBookListWhenRequested() {
+		PrintStream printStreamMock = mock(PrintStream.class);
+		System.setOut(printStreamMock);
+		MainMenu menu = new MainMenu();
+
+		menu.executeOption("1");
+
+		verify(printStreamMock).println("Book 1: The Myth of Sisyphus, Albert Camus, 1952");
+		verify(printStreamMock).println("Book 2: Sofie's World, Joseph Gaardner, 2000");
+		verify(printStreamMock).println("Book 3: Harry Potter and The Sorcerer's Stone, J. K. Rolling, 2000");
+	}
+
+	@Test
+	public void shouldDisplayInvalidMessageWhenOptionNotFound() {
+		PrintStream printStreamMock = mock(PrintStream.class);
+		System.setOut(printStreamMock);
+		MainMenu menu = new MainMenu();
+
+		menu.executeOption("INVALID OPTION");
+
+		verify(printStreamMock).println("Invalid Option.. Please try again.");
 	}
 }
