@@ -6,11 +6,10 @@ import com.twu.biblioteca.models.Book;
 import java.util.Arrays;
 import java.util.List;
 
+
 public class BibliotecaFactory {
 	public static Biblioteca create() {
-		return new Biblioteca(
-				createBooks()
-		);
+		return new Biblioteca(createBooks());
 	}
 
 	private static List<Book> createBooks() {
