@@ -14,9 +14,9 @@ public class BibliotecaFactory {
 
 	private List<Book> createBooks() {
 		return Arrays.asList(
-				new Book("The Myth of Sisyphus", "Albert Camus", 1952),
-				new Book("Sofie's World", "Joseph Gaardner", 2000),
-				new Book("Harry Potter and The Sorcerer's Stone", "J. K. Rolling", 2000)
+				new Book("The Myth of Sisyphus", "Albert Camus", 1952, true),
+				new Book("Sofie's World", "Joseph Gaardner", 2000, true),
+				new Book("Harry Potter and The Sorcerer's Stone", "J. K. Rolling", 2000, true)
 		);
 	}
 }

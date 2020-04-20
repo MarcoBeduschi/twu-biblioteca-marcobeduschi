@@ -31,4 +31,9 @@ public class BibliotecaTest {
 
 		assertThat(actualBooks, is(equalTo(expectedBooks)));
 	}
+
+	@Test
+	public void shouldHaveACheckoutOption() {
+
+	}
 }

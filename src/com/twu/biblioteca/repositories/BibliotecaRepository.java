@@ -7,7 +7,7 @@ public class BibliotecaRepository {
 	private static Biblioteca biblioteca;
 	private static BibliotecaFactory bibliotecaFactory = new BibliotecaFactory();
 
-	public static Biblioteca findOrCreate() {
+	public Biblioteca findOrCreate() {
 		if (biblioteca == null) {
 			biblioteca = bibliotecaFactory.create();
 		}

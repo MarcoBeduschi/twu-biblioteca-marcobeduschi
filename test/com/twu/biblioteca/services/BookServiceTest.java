@@ -1,12 +1,9 @@
 package com.twu.biblioteca.services;
 
 import com.twu.biblioteca.models.Book;
-import com.twu.biblioteca.repositories.BookRepository;
 import org.junit.Test;
 
-import java.io.PrintStream;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -19,8 +16,8 @@ public class BookServiceTest {
 	@Test
 	public void shouldListAllBooks() {
 		List<Book> books = Arrays.asList(
-				new Book("The Olympians", "Rick Riordan", 2006),
-				new Book("Friday 13th", "No Clue", 1980)
+				new Book("The Olympians", "Rick Riordan", 2006, true),
+				new Book("Friday 13th", "No Clue", 1980, true)
 		);
 
 		List<String> bookList = BookService.listBooks(books);

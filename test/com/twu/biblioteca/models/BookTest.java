@@ -1,9 +1,7 @@
 package com.twu.biblioteca.models;
 
-import com.twu.biblioteca.repositories.BookRepository;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.junit.Test;
-
-import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
@@ -13,7 +11,7 @@ public class BookTest {
 
 	@Test
 	public void shouldHaveATitle() {
-		Book book = new Book("The Lord Of The Rings", "J. R. R. Tolkien", 1954);
+		Book book = new Book("The Lord Of The Rings", "J. R. R. Tolkien", 1954, true);
 
 		String actualTitle = book.title;
 
@@ -22,7 +20,7 @@ public class BookTest {
 
 	@Test
 	public void shouldHaveAnAuthor() {
-		Book book = new Book("The Lord Of The Rings", "J. R. R. Tolkien", 1954);
+		Book book = new Book("The Lord Of The Rings", "J. R. R. Tolkien", 1954, true);
 
 		String actualAuthor = book.author;
 
@@ -31,7 +29,7 @@ public class BookTest {
 
 	@Test
 	public void shouldHaveAnYearPublished() {
-		Book book = new Book("The Lord Of The Rings", "J. R. R. Tolkien", 1954);
+		Book book = new Book("The Lord Of The Rings", "J. R. R. Tolkien", 1954, true);
 
 		int actualYearPublished = book.yearPublished;
 
@@ -40,10 +38,28 @@ public class BookTest {
 
 	@Test
 	public void shouldReturnBookInfoFormatted() {
-		Book book = new Book("The Lord Of The Rings", "J. R. R. Tolkien", 1954);
+		Book book = new Book("The Lord Of The Rings", "J. R. R. Tolkien", 1954, true);
 
 		String actualInfo = book.info();
 
 		assertThat(actualInfo, is(equalTo("The Lord Of The Rings, J. R. R. Tolkien, 1954")));
+	}
+
+	@Test
+	public void shouldHaveAnInStockBooleanOption() {
+		Book book = new Book("The Lord Of The Rings", "J. R. R. Tolkien", 1954, false);
+
+		Boolean inStock = book.getInStock();
+
+		assertThat(inStock, is(equalTo(false)));
+	}
+
+	@Test
+	public void shouldChangeInStockToFalseWhenBookIsCheckedOut() {
+		Book book = new Book("The Lord Of The Rings", "J. R. R. Tolkien", 1954, true);
+
+		book.checkOut();
+
+		assertThat(book.getInStock(), is(equalTo(false)));
 	}
 }
