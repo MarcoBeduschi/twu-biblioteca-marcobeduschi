@@ -21,7 +21,7 @@ public class Biblioteca {
 	}
 
 	public List<String> listBooks() {
-		return BookService.listBooks(getBooks());
+		return BookService.listBooks(getBooksInStock());
 	}
 
 	public List<Book> getBooksInStock() {
