@@ -19,7 +19,7 @@ public class CheckoutSingleBookMenuOptionTest {
 
 		String menuOptionName = menuOption.getName();
 
-		assertThat(menuOptionName, is(equalTo(bookMock.title)));
+		assertThat(menuOptionName, is(equalTo(bookMock.getTitle())));
 	}
 
 	@Test
@@ -33,14 +33,28 @@ public class CheckoutSingleBookMenuOptionTest {
 	}
 
 	@Test
-	public void shouldDisplayAMessageWhenExecuted() {
+	public void shouldDisplayAMessageWhenExecutionSuccessful() {
 		PrintStream printStreamMock = mock(PrintStream.class);
 		System.setOut(printStreamMock);
 		Book bookMock = mock(Book.class);
+		doReturn(true).when(bookMock).checkOut();
 		CheckoutSingleBookMenuOption menuOption = new CheckoutSingleBookMenuOption(bookMock);
 
 		menuOption.execute();
 
 		verify(printStreamMock).println("Thank you! Enjoy the book");
+	}
+
+	@Test
+	public void shouldDisplayAMessageWhenExecutionFails() {
+		PrintStream printStreamMock = mock(PrintStream.class);
+		System.setOut(printStreamMock);
+		Book bookMock = mock(Book.class);
+		doReturn(false).when(bookMock).checkOut();
+		CheckoutSingleBookMenuOption menuOption = new CheckoutSingleBookMenuOption(bookMock);
+
+		menuOption.execute();
+
+		verify(printStreamMock).println("Sorry, that book is not available");
 	}
 }
