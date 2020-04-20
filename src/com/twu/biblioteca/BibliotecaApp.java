@@ -2,7 +2,7 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.factories.MainMenuFactory;
 import com.twu.biblioteca.models.Biblioteca;
-import com.twu.biblioteca.models.menus.mainMenu.MainMenu;
+import com.twu.biblioteca.models.menus.Menu;
 import com.twu.biblioteca.repositories.BibliotecaRepository;
 import com.twu.biblioteca.services.ConsoleDisplayer;
 
@@ -14,13 +14,13 @@ public class BibliotecaApp {
 
 	public static void main(String[] args) {
 		BibliotecaRepository bibliotecaRepository = new BibliotecaRepository();
-		MainMenu menu = new MainMenuFactory().create();
+		Menu menu = new MainMenuFactory().create();
 		Biblioteca biblioteca = bibliotecaRepository.findOrCreate();
 
 		run(biblioteca, menu);
 	}
 
-	public static void run(Biblioteca biblioteca, MainMenu menu) {
+	public static void run(Biblioteca biblioteca, Menu menu) {
 		ConsoleDisplayer.displayMessage(biblioteca.getWelcomeMessage());
 		while (!shouldTerminateApp()) {
 			runMainMenu(menu);
@@ -44,7 +44,7 @@ public class BibliotecaApp {
 		running = true;
 	}
 
-	private static void runMainMenu(MainMenu menu) {
+	private static void runMainMenu(Menu menu) {
 		menu.getOptions().forEach(ConsoleDisplayer::displayMessage);
 		menu.executeOption(getUserInput());
 	}
