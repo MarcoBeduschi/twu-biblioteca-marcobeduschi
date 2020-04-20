@@ -13,7 +13,7 @@ public class Book {
 		this.inStock = inStock;
 	}
 
-	public String info()  {
+	public String info() {
 		return String.format("%s, %s, %d", title, author, yearPublished);
 	}
 
@@ -21,8 +21,12 @@ public class Book {
 		return inStock;
 	}
 
+	public String getTitle() {
+		return title;
+	}
+
 	public boolean checkOut() {
-		if(!inStock) {
+		if (!inStock) {
 			return false;
 		}
 
@@ -30,7 +34,13 @@ public class Book {
 		return true;
 	}
 
-	public String getTitle() {
-		return title;
+	public Boolean returnRental() {
+		if (inStock) {
+			return false;
+		}
+
+		inStock = true;
+		return true;
 	}
+
 }

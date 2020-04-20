@@ -84,4 +84,36 @@ public class BookTest {
 
 		assertThat(checkoutResult, is(equalTo(false)));
 	}
+
+	@Test
+	public void shouldAllowABookToBeReturned() {
+		Book book = new Book("The Lord Of The Rings", "J. R. R. Tolkien", 1954, false);
+
+		book.returnRental();
+
+		assertThat(book.getInStock(), is(equalTo(true)));
+	}
+
+	@Test
+	public void shouldReturnTrueWhenBookRentalIsSuccessfullyReturned() {
+		Book book = new Book("The Lord Of The Rings", "J. R. R. Tolkien", 1954, false);
+
+		Boolean rentalReturnValue = book.returnRental();
+
+		assertThat(rentalReturnValue, is(equalTo(true)));
+	}
+
+	@Test
+	public void shouldReturnFalseWhenBookFailsToBeReturnedFromRental() {
+		Book book = new Book(
+				"The Lord Of The Rings",
+				"J. R. R. Tolkien",
+				1954,
+				true
+		);
+
+		Boolean rentalReturnValue = book.returnRental();
+
+		assertThat(rentalReturnValue, is(equalTo(false)));
+	}
 }
