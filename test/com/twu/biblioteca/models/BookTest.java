@@ -17,7 +17,7 @@ public class BookTest {
 	public void shouldHaveATitle() {
 		Book book = new Book("The Lord Of The Rings", "J. R. R. Tolkien", 1954, true);
 
-		String actualTitle = book.title;
+		String actualTitle = book.getTitle();
 
 		assertThat(actualTitle, is(equalTo("The Lord Of The Rings")));
 	}
@@ -65,5 +65,23 @@ public class BookTest {
 		book.checkOut();
 
 		assertThat(book.getInStock(), is(equalTo(false)));
+	}
+
+	@Test
+	public void shouldReturnTrueWhenCheckoutIsSuccessful() {
+		Book book = new Book("The Lord Of The Rings", "J. R. R. Tolkien", 1954, true);
+
+		Boolean checkoutResult = book.checkOut();
+
+		assertThat(checkoutResult, is(equalTo(true)));
+	}
+
+	@Test
+	public void shouldReturnFalseWhenCheckoutFails() {
+		Book book = new Book("The Lord Of The Rings", "J. R. R. Tolkien", 1954, false);
+
+		Boolean checkoutResult = book.checkOut();
+
+		assertThat(checkoutResult, is(equalTo(false)));
 	}
 }

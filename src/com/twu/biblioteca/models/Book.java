@@ -1,10 +1,7 @@
 package com.twu.biblioteca.models;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class Book {
-	public final String title;
+	private final String title;
 	public final String author;
 	public final int yearPublished;
 	private boolean inStock;
@@ -24,8 +21,13 @@ public class Book {
 		return inStock;
 	}
 
-	public void checkOut() {
+	public boolean checkOut() {
+		if(!inStock) {
+			return false;
+		}
+
 		inStock = false;
+		return true;
 	}
 
 	public String getTitle() {
