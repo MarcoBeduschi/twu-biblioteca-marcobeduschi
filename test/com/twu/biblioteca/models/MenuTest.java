@@ -1,7 +1,7 @@
 package com.twu.biblioteca.models;
 
 import com.twu.biblioteca.models.menus.mainMenu.menuOptions.ListBookMenuOption;
-import com.twu.biblioteca.models.menus.MainMenu;
+import com.twu.biblioteca.models.menus.Menu;
 import com.twu.biblioteca.models.menus.mainMenu.menuOptions.MenuOption;
 import org.junit.Test;
 
@@ -15,14 +15,14 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
 
-public class MainMenuTest {
+public class MenuTest {
 	@Test
 	public void shouldDisplayAllOptionsNames() {
 		MenuOption option1 = mock(ListBookMenuOption.class);
 		doReturn("Option 1").when(option1).getName();
 		MenuOption option2 = mock(ListBookMenuOption.class);
 		doReturn("Option 2").when(option2).getName();
-		MainMenu menu = new MainMenu(Arrays.asList(option1, option2));
+		Menu menu = new Menu(Arrays.asList(option1, option2));
 
 		List<String> options = menu.getOptions();
 
@@ -33,7 +33,7 @@ public class MainMenuTest {
 	public void shouldExecuteOptionBasedOnOptionName() {
 		MenuOption option1 = mock(ListBookMenuOption.class);
 		doReturn("Option 1").when(option1).getName();
-		MainMenu menu = new MainMenu(Collections.singletonList(option1));
+		Menu menu = new Menu(Collections.singletonList(option1));
 
 		menu.executeOption("Option 1");
 
@@ -46,10 +46,10 @@ public class MainMenuTest {
 		System.setOut(printStreamMock);
 		MenuOption option1 = mock(ListBookMenuOption.class);
 		doReturn("Option 1").when(option1).getName();
-		MainMenu menu = new MainMenu(Collections.singletonList(option1));
+		Menu menu = new Menu(Collections.singletonList(option1));
 
 		menu.executeOption("Invalid Option");
 
-		verify(printStreamMock).println(MainMenu.INVALID_OPTION);
+		verify(printStreamMock).println(Menu.INVALID_OPTION);
 	}
 }

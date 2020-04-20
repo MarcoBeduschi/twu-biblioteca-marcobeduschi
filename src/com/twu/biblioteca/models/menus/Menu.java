@@ -6,11 +6,11 @@ import com.twu.biblioteca.services.ConsoleDisplayer;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MainMenu {
+public class Menu {
 	public static final String INVALID_OPTION = "Please select a valid option!";
 	private final List<MenuOption> options;
 
-	public MainMenu(List<MenuOption> options) {
+	public Menu(List<MenuOption> options) {
 		this.options = options;
 	}
 
