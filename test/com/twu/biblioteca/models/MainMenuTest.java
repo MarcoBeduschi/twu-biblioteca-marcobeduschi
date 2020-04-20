@@ -1,7 +1,7 @@
 package com.twu.biblioteca.models;
 
 import com.twu.biblioteca.models.menus.mainMenu.menuOptions.ListBookMenuOption;
-import com.twu.biblioteca.models.menus.mainMenu.MainMenu;
+import com.twu.biblioteca.models.menus.MainMenu;
 import com.twu.biblioteca.models.menus.mainMenu.menuOptions.MenuOption;
 import org.junit.Test;
 

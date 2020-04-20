@@ -1,4 +1,4 @@
-package com.twu.biblioteca.models.menus.mainMenu;
+package com.twu.biblioteca.models.menus;
 
 import com.twu.biblioteca.models.menus.mainMenu.menuOptions.MenuOption;
 import com.twu.biblioteca.services.ConsoleDisplayer;
