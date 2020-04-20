@@ -14,16 +14,15 @@ public class BibliotecaApp {
 
 	public static void main(String[] args) {
 		BibliotecaRepository bibliotecaRepository = new BibliotecaRepository();
-		Menu menu = new MainMenuFactory().create();
 		Biblioteca biblioteca = bibliotecaRepository.findOrCreate();
 
-		run(biblioteca, menu);
+		run(biblioteca);
 	}
 
-	public static void run(Biblioteca biblioteca, Menu menu) {
+	public static void run(Biblioteca biblioteca) {
 		ConsoleDisplayer.displayMessage(biblioteca.getWelcomeMessage());
 		while (!shouldTerminateApp()) {
-			runMainMenu(menu);
+			runMainMenu();
 		}
 	}
 
@@ -44,7 +43,9 @@ public class BibliotecaApp {
 		running = true;
 	}
 
-	private static void runMainMenu(Menu menu) {
+	private static void runMainMenu() {
+		Menu menu = new MainMenuFactory().create();
+
 		menu.getOptions().forEach(ConsoleDisplayer::displayMessage);
 		menu.executeOption(getUserInput());
 	}
