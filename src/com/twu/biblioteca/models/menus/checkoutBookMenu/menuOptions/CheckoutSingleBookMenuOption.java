@@ -2,8 +2,10 @@ package com.twu.biblioteca.models.menus.checkoutBookMenu.menuOptions;
 
 import com.twu.biblioteca.models.Book;
 import com.twu.biblioteca.models.menus.mainMenu.menuOptions.MenuOption;
+import com.twu.biblioteca.services.ConsoleDisplayer;
 
 public class CheckoutSingleBookMenuOption implements MenuOption {
+	public static final String SUCCESS_MESSAGE = "Thank you! Enjoy the book";
 	private final Book book;
 
 	public CheckoutSingleBookMenuOption(Book book) {
@@ -18,5 +20,6 @@ public class CheckoutSingleBookMenuOption implements MenuOption {
 	@Override
 	public void execute() {
 		book.checkOut();
+		ConsoleDisplayer.displayMessage(SUCCESS_MESSAGE);
 	}
 }
