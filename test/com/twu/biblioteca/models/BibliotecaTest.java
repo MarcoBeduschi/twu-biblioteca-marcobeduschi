@@ -33,7 +33,21 @@ public class BibliotecaTest {
 	}
 
 	@Test
-	public void shouldHaveACheckoutOption() {
+	public void shouldHaveAGetterForBooksInStock() {
+		List<Book> booksInStock = Arrays.asList(
+				new Book("The Lord Of The Rings", "J. R. R. Tolkien", 1954, true),
+				new Book("The Lord Of The Rings", "J. R. R. Tolkien", 1954, true)
+		);
+		List<Book> booksNotInStock = Collections.singletonList(
+				new Book("The Lord Of The Rings", "J. R. R. Tolkien", 1954, false)
+		);
+		List<Book> allBooks = new java.util.ArrayList<>();
+		allBooks.addAll(booksInStock);
+		allBooks.addAll(booksNotInStock);
+		Biblioteca biblioteca = new Biblioteca(allBooks);
 
+		List<Book> filteredBooks = biblioteca.getBooksInStock();
+
+		assertThat(filteredBooks, is(equalTo(booksInStock)));
 	}
 }

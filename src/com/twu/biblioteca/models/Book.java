@@ -16,10 +16,6 @@ public class Book {
 		this.inStock = inStock;
 	}
 
-	public static List<Book> filterByInStock(List<Book> books) {
-		return books.stream().filter(book -> book.inStock).collect(Collectors.toList());
-	}
-
 	public String info()  {
 		return String.format("%s, %s, %d", title, author, yearPublished);
 	}

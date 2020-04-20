@@ -3,6 +3,7 @@ package com.twu.biblioteca.models;
 import com.twu.biblioteca.services.BookService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Biblioteca {
 	private final List<Book> books;
@@ -21,5 +22,9 @@ public class Biblioteca {
 
 	public List<String> listBooks() {
 		return BookService.listBooks(getBooks());
+	}
+
+	public List<Book> getBooksInStock() {
+		return books.stream().filter(Book::getInStock).collect(Collectors.toList());
 	}
 }

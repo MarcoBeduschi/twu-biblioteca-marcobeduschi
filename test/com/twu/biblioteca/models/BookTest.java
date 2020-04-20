@@ -66,22 +66,4 @@ public class BookTest {
 
 		assertThat(book.getInStock(), is(equalTo(false)));
 	}
-
-	@Test
-	public void shouldFilterBooksNotInStock() {
-		List<Book> booksInStock = Arrays.asList(
-				new Book("The Lord Of The Rings", "J. R. R. Tolkien", 1954, true),
-				new Book("The Lord Of The Rings", "J. R. R. Tolkien", 1954, true)
-		);
-		List<Book> booksNotInStock = Collections.singletonList(
-				new Book("The Lord Of The Rings", "J. R. R. Tolkien", 1954, false)
-		);
-		List<Book> allBooks = new java.util.ArrayList<>();
-		allBooks.addAll(booksInStock);
-		allBooks.addAll(booksNotInStock);
-
-		List<Book> filteredBooks = Book.filterByInStock(allBooks);
-
-		assertThat(filteredBooks, is(equalTo(booksInStock)));
-	}
 }
