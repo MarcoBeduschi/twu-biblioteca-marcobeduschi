@@ -1,53 +1,55 @@
 package com.twu.biblioteca.models;
 
-import com.twu.biblioteca.repositories.BookRepository;
-import org.junit.Before;
+import com.twu.biblioteca.models.menus.mainMenu.menuOptions.ListBookMenuOption;
+import com.twu.biblioteca.models.menus.mainMenu.MainMenu;
+import com.twu.biblioteca.models.menus.mainMenu.menuOptions.MenuOption;
 import org.junit.Test;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 public class MainMenuTest {
 	@Test
-	public void shouldReturnAListOfOptionsToBeDisplayed() {
-		MainMenu menu = new MainMenu();
-		List<String> expectedOptions = Arrays.asList("Main Menu:", "1. List Books");
+	public void shouldDisplayAllOptionsNames() {
+		MenuOption option1 = mock(ListBookMenuOption.class);
+		doReturn("Option 1").when(option1).getName();
+		MenuOption option2 = mock(ListBookMenuOption.class);
+		doReturn("Option 2").when(option2).getName();
+		MainMenu menu = new MainMenu(Arrays.asList(option1, option2));
 
-		List<String> actualOptions = menu.getOptions();
+		List<String> options = menu.getOptions();
 
-		assertThat(actualOptions, is(equalTo(expectedOptions)));
+		assertThat(options, is(equalTo(Arrays.asList("Option 1", "Option 2"))));
 	}
 
 	@Test
-	public void shouldDisplayBookListWhenRequested() {
-		PrintStream printStreamMock = mock(PrintStream.class);
-		System.setOut(printStreamMock);
-		MainMenu menu = new MainMenu();
+	public void shouldExecuteOptionBasedOnOptionName() {
+		MenuOption option1 = mock(ListBookMenuOption.class);
+		doReturn("Option 1").when(option1).getName();
+		MainMenu menu = new MainMenu(Collections.singletonList(option1));
 
-		menu.executeOption("1");
+		menu.executeOption("Option 1");
 
-		verify(printStreamMock).println("Book 1: The Myth of Sisyphus, Albert Camus, 1952");
-		verify(printStreamMock).println("Book 2: Sofie's World, Joseph Gaardner, 2000");
-		verify(printStreamMock).println("Book 3: Harry Potter and The Sorcerer's Stone, J. K. Rolling, 2000");
+		verify(option1).execute();
 	}
 
 	@Test
-	public void shouldDisplayInvalidMessageWhenOptionNotFound() {
+	public void shouldDisplayInvalidOptionIfOptionNotFound() {
 		PrintStream printStreamMock = mock(PrintStream.class);
 		System.setOut(printStreamMock);
-		MainMenu menu = new MainMenu();
+		MenuOption option1 = mock(ListBookMenuOption.class);
+		doReturn("Option 1").when(option1).getName();
+		MainMenu menu = new MainMenu(Collections.singletonList(option1));
 
-		menu.executeOption("INVALID OPTION");
+		menu.executeOption("Invalid Option");
 
-		verify(printStreamMock).println("Invalid Option.. Please try again.");
+		verify(printStreamMock).println(MainMenu.INVALID_OPTION);
 	}
 }
