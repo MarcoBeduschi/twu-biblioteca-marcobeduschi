@@ -1,5 +1,8 @@
 package com.twu.biblioteca.models;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Book {
 	public final String title;
 	public final String author;
@@ -13,6 +16,10 @@ public class Book {
 		this.inStock = inStock;
 	}
 
+	public static List<Book> filterByInStock(List<Book> books) {
+		return books.stream().filter(book -> book.inStock).collect(Collectors.toList());
+	}
+
 	public String info()  {
 		return String.format("%s, %s, %d", title, author, yearPublished);
 	}
@@ -23,5 +30,9 @@ public class Book {
 
 	public void checkOut() {
 		inStock = false;
+	}
+
+	public String getTitle() {
+		return title;
 	}
 }

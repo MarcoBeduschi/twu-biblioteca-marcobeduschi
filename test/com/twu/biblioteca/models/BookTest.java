@@ -3,6 +3,10 @@ package com.twu.biblioteca.models;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
@@ -61,5 +65,23 @@ public class BookTest {
 		book.checkOut();
 
 		assertThat(book.getInStock(), is(equalTo(false)));
+	}
+
+	@Test
+	public void shouldFilterBooksNotInStock() {
+		List<Book> booksInStock = Arrays.asList(
+				new Book("The Lord Of The Rings", "J. R. R. Tolkien", 1954, true),
+				new Book("The Lord Of The Rings", "J. R. R. Tolkien", 1954, true)
+		);
+		List<Book> booksNotInStock = Collections.singletonList(
+				new Book("The Lord Of The Rings", "J. R. R. Tolkien", 1954, false)
+		);
+		List<Book> allBooks = new java.util.ArrayList<>();
+		allBooks.addAll(booksInStock);
+		allBooks.addAll(booksNotInStock);
+
+		List<Book> filteredBooks = Book.filterByInStock(allBooks);
+
+		assertThat(filteredBooks, is(equalTo(booksInStock)));
 	}
 }
